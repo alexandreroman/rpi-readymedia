@@ -13,9 +13,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-FROM sdhibit/rpi-raspbian:jessie
+FROM resin/rpi-raspbian:stretch
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y --no-install-recommends libjpeg62-turbo libid3tag0 libsqlite3-0 libavformat56 libexif12 libflac8
+RUN apt-get install -y --no-install-recommends libjpeg62-turbo libid3tag0 libsqlite3-0 libavformat57 libexif12 libflac8
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
 COPY minidlnad /usr/local/bin
 COPY minidlna.conf /etc

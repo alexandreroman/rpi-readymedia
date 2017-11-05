@@ -13,14 +13,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-FROM sdhibit/rpi-raspbian:jessie
+FROM resin/rpi-raspbian:stretch
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y --no-install-recommends build-essential git
 RUN apt-get install -y --no-install-recommends autopoint debhelper dh-autoreconf gcc libavutil-dev libavcodec-dev libavformat-dev libjpeg-dev libsqlite3-dev libexif-dev libid3tag0-dev libogg-dev libvorbis-dev libflac-dev
 
 RUN git clone http://git.code.sf.net/p/minidlna/git minidlna-git
 WORKDIR /minidlna-git
-RUN git checkout v1_2_0
+RUN git checkout v1_2_1
 
 RUN ./autogen.sh && ./configure && make
 
