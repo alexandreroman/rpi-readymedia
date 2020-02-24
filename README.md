@@ -14,11 +14,16 @@ Build a Docker image using this command:
 A Docker image named 'rpi-readymedia' is now available.
 Create a new Docker container from this image:
 
-    $ sudo docker create --name rpi-readymedia --restart always -v $PWD/media:/data/media --net=host -p 8200:8200 -p 1900:1900/udp rpi-readymedia
+    $ sudo docker create --name rpi-readymedia --restart always -v $PWD/media:/data/media --net=host rpi-readymedia
 
 You are now ready to start this container:
 
     $ sudo docker start rpi-readymedia
+
+You may have to increase the amount of `inotify` watchers:
+
+    $ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+    $ sudo sysctl -p
 
 Media files are found in the Docker directory <code>/data/media</code>.
 Tweak the command line argument <code>-v /your/local/dir:/data/media</code> to set a specific directory.
@@ -26,5 +31,4 @@ Tweak the command line argument <code>-v /your/local/dir:/data/media</code> to s
 ## Copyright
 
 This program is a free software published under GPL.
-Copyright (c) 2017 Alexandre Roman.
-
+Copyright (c) 2020 Alexandre Roman.

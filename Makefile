@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Alexandre Roman <alexandre.roman@gmail.com>
+# Copyright (c) 2020 Alexandre Roman <alexandre.roman@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,15 +16,7 @@
 all: rpi-readymedia
 
 clean:
-	/bin/rm -f minidlnad
-	sudo docker image rm rpi-readymedia-build
 	sudo docker image rm rpi-readymedia
 
-minidlnad:
-	sudo docker build -t rpi-readymedia-build -f Dockerfile_build .
-	sudo docker create --name rpi-readymedia-tmp rpi-readymedia-build
-	sudo docker cp rpi-readymedia-tmp:/minidlna-git/minidlnad .
-	sudo docker rm -v rpi-readymedia-tmp
-
-rpi-readymedia: minidlnad
+rpi-readymedia:
 	sudo docker build -t rpi-readymedia .
